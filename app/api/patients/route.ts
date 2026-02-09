@@ -13,10 +13,11 @@ export async function POST(request: Request) {
             message: 'Patient registered successfully!',
             data: newPatient
         }, { status: 201 });
-    } catch (error) {
+    } catch (error: any) {
+        console.error('Error in /api/patients:', error);
         return NextResponse.json({
             message: 'Something went wrong',
-            error: error
+            error: error.message || error
         }, { status: 500 });
     }
 }
